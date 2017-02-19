@@ -19,21 +19,23 @@ public class HomeScreen extends AppCompatActivity {
 
     //ImageView imageView;
     static final int CAM_REQUEST = 1;
+    File picture = getFile();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //final File file = getFile();
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_screen);
         button = (Button) findViewById(R.id.button);
         //imageView = (ImageView)findViewById(R.id.image_view);
-        final File file = getFile();
         button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v) {
             Intent camera_intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-            camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
+            camera_intent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(picture));
             startActivityForResult(camera_intent, CAM_REQUEST);
-            //sendImageToServer();
+            sendImageToServer();
             }
         });
         button2 = (Button) findViewById(R.id.button3);
@@ -63,6 +65,12 @@ public class HomeScreen extends AppCompatActivity {
         Intent intent = new Intent(this, ListViewActivity.class);
         startActivity(intent);
     }
+
+    private void sendImageToServer(){
+
+    }
+
+
 
 }
 
